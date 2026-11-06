@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/onlytoppers-blog
+  branch: main
+  base_url: https://YOUR-OAUTH-PROXY-URL
+
+site_url: https://blog.onlytoppers.com
+display_url: https://blog.onlytoppers.com
+media_folder: "src/assets/images"
+public_folder: "/assets/images"
+publish_mode: editorial_workflow
+
+collections:
+  - name: posts
+    label: Articles
+    folder: src/posts
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Meta description, name: description, widget: text, hint: "About 150 characters. Shows in Google results." }
+      - { label: Publish date, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Author, name: author, widget: string, default: OnlyToppers Editorial Team }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Body, name: body, widget: markdown }
