@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+permalink: /
+---
+<div class="wrap">
+  <section class="masthead">
+    <h1>The OnlyToppers Journal</h1>
+    <p>{{ site.description }}</p>
+  </section>
+  {% if collections.posts.length %}
+    {% for post in collections.posts %}{% if loop.first %}
+    <article class="lead">
+      <p class="meta">{{ post.date | dateDisplay }}</p>
+      <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      <p class="dek">{{ post.data.description }}</p>
+    </article>
+    {% endif %}{% endfor %}
+    <div class="grid">
+      {% for post in collections.posts %}{% if not loop.first %}
+      <article class="card">
+        <p class="meta">{{ post.date | dateDisplay }}</p>
+        <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        <p>{{ post.data.description }}</p>
+      </article>
+      {% endif %}{% endfor %}
+    </div>
+  {% else %}
+    <p class="empty">No articles yet. Add a Markdown file to src/posts/ to publish the first one.</p>
+  {% endif %}
+</div>
